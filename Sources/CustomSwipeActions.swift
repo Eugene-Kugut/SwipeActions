@@ -10,7 +10,7 @@ import SwiftUI
 extension View {
 
     @ViewBuilder
-    func swipeActions(config: ActionConfig = .init(), @ActionBuilder actions: () -> [Action]) -> some View {
+    public func swipeActions(config: ActionConfig = .init(), @ActionBuilder actions: () -> [Action]) -> some View {
         self
             .modifier(CustomSwipeActionModifier(config: config, actions: actions()))
     }

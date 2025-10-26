@@ -7,9 +7,16 @@
 
 import Foundation
 
-struct ActionConfig {
-    var leadingPadding: CGFloat = 8
-    var trailingPadding: CGFloat = 8
-    var spacing: CGFloat = 8
-    var occupiesFullWidth: Bool = false
+public struct ActionConfig {
+    let leadingPadding: CGFloat
+    let trailingPadding: CGFloat
+    let spacing: CGFloat
+    let occupiesFullWidth: Bool
+
+    public init(leadingPadding: CGFloat = 8, trailingPadding: CGFloat = 8, spacing: CGFloat = 8, occupiesFullWidth: Bool = false) {
+        self.leadingPadding = leadingPadding
+        self.trailingPadding = trailingPadding
+        self.spacing = spacing
+        self.occupiesFullWidth = occupiesFullWidth
+    }
 }

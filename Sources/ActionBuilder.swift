@@ -8,8 +8,8 @@
 import SwiftUI
 
 @resultBuilder
-struct ActionBuilder {
-    static func buildBlock(_ components: Action...) -> [Action] {
+public struct ActionBuilder {
+    public static func buildBlock(_ components: Action...) -> [Action] {
         components
     }
 }
