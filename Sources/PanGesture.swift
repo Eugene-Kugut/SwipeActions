@@ -7,18 +7,6 @@
 
 import SwiftUI
 
-struct PanGestureValue {
-    var translation: CGSize = .zero
-    var velocity: CGSize = .zero
-}
-
-extension CGPoint {
-    var tosize: CGSize {
-        return CGSize(width: x, height: y)
-    }
-}
-
-@available(iOS 18, *)
 struct PanGesture: UIGestureRecognizerRepresentable {
     var onBegan: () -> ()
     var onChange: (PanGestureValue) -> ()

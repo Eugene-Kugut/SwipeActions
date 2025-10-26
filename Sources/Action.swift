@@ -7,26 +7,6 @@
 
 import SwiftUI
 
-public enum ActionShape {
-    case circle
-    case rectangle
-    case rounded(radius: CGFloat)
-}
-
-//extension ActionShape {
-////    @ViewBuilder
-//    var shape: some Shape {
-//        switch self {
-//        case .circle:
-//            return .circle
-//        case .rectangle:
-//            return .roundedRectangle
-//        case .rounded(let radius):
-//            return .circle //RoundedRectangle(cornerRadius: radius)
-//        }
-//    }
-//}
-
 public struct Action: Identifiable {
     public let id: String
     let symbolImage: String
