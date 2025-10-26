@@ -15,6 +15,18 @@ extension View {
             .modifier(CustomSwipeActionModifier(config: config, actions: actions()))
     }
 
+    @ViewBuilder
+    public func actionBackground(_ action: Action) -> some View {
+        switch action.actionShape {
+        case .circle:
+            self.background(action.background, in: .circle)
+        case .rectangle:
+            self.background(action.background, in: .rect)
+        case .rounded(let radius):
+            self.background(action.background, in: .rect(cornerRadius: radius))
+        }
+    }
+
 }
 
 fileprivate struct CustomSwipeActionModifier: ViewModifier {
@@ -75,8 +87,17 @@ fileprivate struct CustomSwipeActionModifier: ViewModifier {
             }
     }
 
+    @ViewBuilder func actionView(for action: Action, size: CGSize) -> some View {
+        Image(systemName: action.symbolImage)
+            .font(action.font)
+            .fontWeight(action.fontWeight)
+            .foregroundStyle(action.tint)
+            .frame(width: size.width, height: size.height)
+            .actionBackground(action)
+    }
+
     @ViewBuilder
-    func ActionsView() -> some View {
+    private func ActionsView() -> some View {
         ZStack(content: {
             ForEach(actions.indices, id: \.self) { index in
                 let action = actions[index]
@@ -87,12 +108,7 @@ fileprivate struct CustomSwipeActionModifier: ViewModifier {
                     Button(action: {
                         action.action(&resetPositionTrigger)
                     }, label: {
-                        Image(systemName: action.symbolImage)
-                            .font(action.font)
-                            .fontWeight(action.fontWeight)
-                            .foregroundStyle(action.tint)
-                            .frame(width: size.width, height: size.height)
-                            .background(action.background, in: action.shape)
+                        actionView(for: action, size: size)
                     })
                     .buttonStyle(.plain)
                     .offset(x: offset * progress)
