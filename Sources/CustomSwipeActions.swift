@@ -71,7 +71,7 @@ struct CustomSwipeActionModifier: ViewModifier {
             .fontWeight(action.fontWeight)
             .foregroundStyle(action.tint)
             .frame(width: size.width, height: size.height)
-            .actionBackground(action)
+            .actionBackground(action, config: config)
     }
 
     @ViewBuilder private func ActionsView() -> some View {
@@ -90,7 +90,7 @@ struct CustomSwipeActionModifier: ViewModifier {
                     .buttonStyle(.plain)
                     .offset(x: offset * progress)
 
-                }.frame(width: action.size.width, height: action.size.height)
+                }.frame(width: config.size.width, height: config.size.height)
             }
         })
         .visualEffect { content, proxy in
@@ -138,10 +138,12 @@ struct CustomSwipeActionModifier: ViewModifier {
     }
 
     var maxOffsetWidth: CGFloat {
-        let totalActionSize: CGFloat = actions.reduce(0) {partialResult, action in
-            partialResult + action.size.width
+        if actions.count == 0 {
+            return 0
         }
-        let spacing = config.spacing * CGFloat(actions.count - 1)
+
+        let totalActionSize: CGFloat = CGFloat(actions.count) * config.size.width
+        let spacing = CGFloat(actions.count - 1) * config.spacing
 
         return totalActionSize + spacing + config.leadingPadding + config.trailingPadding
     }

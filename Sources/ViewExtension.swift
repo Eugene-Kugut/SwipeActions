@@ -16,8 +16,8 @@ extension View {
     }
 
     @ViewBuilder
-    public func actionBackground(_ action: Action) -> some View {
-        switch action.actionShape {
+    public func actionBackground(_ action: Action, config: ActionConfig = .init()) -> some View {
+        switch config.actionShape {
         case .circle:
             self.background(action.background, in: .circle)
         case .rectangle:

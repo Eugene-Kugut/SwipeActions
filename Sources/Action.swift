@@ -12,11 +12,8 @@ public struct Action: Identifiable {
     let symbolImage: String
     let tint: Color
     let background: Color
-
     let font: Font
     let fontWeight: Font.Weight
-    let size: CGSize
-    let actionShape: ActionShape
     let action: (inout Bool) -> Void
 
     public init(
@@ -26,8 +23,6 @@ public struct Action: Identifiable {
         background: Color,
         font: Font = .title2,
         fontWeight: Font.Weight = .regular,
-        size: CGSize = .init(width: 45, height: 45),
-        shape: ActionShape = .circle,
         action: @escaping (inout Bool) -> Void
     ) {
         self.id = id
@@ -36,8 +31,6 @@ public struct Action: Identifiable {
         self.background = background
         self.font = font
         self.fontWeight = fontWeight
-        self.size = size
-        self.actionShape = shape
         self.action = action
     }
 }
