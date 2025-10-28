@@ -75,7 +75,7 @@ struct CustomSwipeActionModifier: ViewModifier {
     }
 
     @ViewBuilder private func ActionsView() -> some View {
-        ZStack(content: {
+        ZStack(alignment: config.alignment, content: {
             ForEach(actions.indices, id: \.self) { index in
                 let action = actions[index]
                 GeometryReader {proxy in
