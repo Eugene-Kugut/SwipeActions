@@ -70,7 +70,7 @@ struct CustomSwipeActionModifier: ViewModifier {
             .font(action.font)
             .fontWeight(action.fontWeight)
             .foregroundStyle(action.tint)
-            .frame(width: size.width, height: size.height)
+            .frame(width: size.width, height: size.height, alignment: config.alignment)
             .actionBackground(action, config: config)
     }
 
