@@ -22,13 +22,24 @@ struct CustomSwipeActionModifier: ViewModifier {
     @State private var currentID: String = UUID().uuidString
     var sharedData: SwipeActionSharedData = .shared
 
+    private var alignment: Alignment {
+        switch config.alignment {
+        case .top:
+            return .topTrailing
+        case .center:
+            return .trailing
+        default:
+            return .bottomTrailing
+        }
+    }
+
     func body(content: Content) -> some View {
         content
             .overlay {
                 Rectangle()
                     .fill(.clear)
                     .containerRelativeFrame(config.occupiesFullWidth ? .horizontal : .init())
-                    .overlay(alignment: .trailing) {
+                    .overlay(alignment: alignment) {
                         ActionsView()
                     }
             }
@@ -70,7 +81,7 @@ struct CustomSwipeActionModifier: ViewModifier {
             .font(action.font)
             .fontWeight(action.fontWeight)
             .foregroundStyle(action.tint)
-            .frame(width: size.width, height: size.height, alignment: config.alignment)
+            .frame(width: size.width, height: size.height)
             .actionBackground(action, config: config)
     }
 
@@ -90,7 +101,7 @@ struct CustomSwipeActionModifier: ViewModifier {
                     .buttonStyle(.plain)
                     .offset(x: offset * progress)
 
-                }.frame(width: config.size.width, height: config.size.height, alignment: config.alignment)
+                }.frame(width: config.size.width, height: config.size.height)
             }
         })
         .visualEffect { content, proxy in
