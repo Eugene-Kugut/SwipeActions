@@ -15,6 +15,7 @@ public struct ActionConfig {
     let size: CGSize
     let actionShape: ActionShape
     let alignment: VerticalAlignment
+    let verticalPadding: CGFloat
 
     public init(
         leadingPadding: CGFloat = 8,
@@ -23,7 +24,8 @@ public struct ActionConfig {
         occupiesFullWidth: Bool = false,
         size: CGSize = .init(width: 45, height: 45),
         shape: ActionShape = .circle,
-        alignment: VerticalAlignment = .center
+        alignment: VerticalAlignment = .center,
+        verticalPadding: CGFloat = 0
     ) {
         self.leadingPadding = leadingPadding
         self.trailingPadding = trailingPadding
@@ -32,5 +34,6 @@ public struct ActionConfig {
         self.size = size
         self.actionShape = shape
         self.alignment = alignment
+        self.verticalPadding = verticalPadding
     }
 }
