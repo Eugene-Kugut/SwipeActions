@@ -41,7 +41,8 @@ struct CustomSwipeActionModifier: ViewModifier {
                     .containerRelativeFrame(config.occupiesFullWidth ? .horizontal : .init())
                     .overlay(alignment: alignment) {
                         ActionsView()
-                            .padding(.vertical, config.verticalPadding)
+                            .padding(.top, config.topPadding)
+                            .padding(.bottom, config.bottomPadding)
                     }
             }
             .compositingGroup()
