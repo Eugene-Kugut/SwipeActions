@@ -75,7 +75,7 @@ struct CustomSwipeActionModifier: ViewModifier {
     }
 
     @ViewBuilder private func ActionsView() -> some View {
-        ZStack(alignment: config.alignment, content: {
+        ZStack(content: {
             ForEach(actions.indices, id: \.self) { index in
                 let action = actions[index]
                 GeometryReader {proxy in
@@ -90,7 +90,7 @@ struct CustomSwipeActionModifier: ViewModifier {
                     .buttonStyle(.plain)
                     .offset(x: offset * progress)
 
-                }.frame(width: config.size.width, height: config.size.height)
+                }.frame(width: config.size.width, height: config.size.height, alignment: config.alignment)
             }
         })
         .visualEffect { content, proxy in
