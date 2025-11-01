@@ -45,7 +45,7 @@ struct CustomSwipeActionModifier: ViewModifier {
                             .padding(.bottom, config.bottomPadding)
                     }
             }
-            .compositingGroup()
+//            .compositingGroup()
             .offset(x: offsetX)
             .offset(x: bounceOffset)
             .mask {
